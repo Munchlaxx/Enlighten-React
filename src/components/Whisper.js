@@ -23,6 +23,8 @@ const styles = {
 
 }
 
+
+// Added comments
 export class Whisper extends Component {
     render() {
 
