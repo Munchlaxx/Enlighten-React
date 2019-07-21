@@ -67,6 +67,7 @@ export class login extends Component {
             this.setState({
               loading: false
             });
+            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
             this.props.history.push('/');
           })
           .catch((err) => {
