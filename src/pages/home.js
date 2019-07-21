@@ -4,19 +4,19 @@ import axios from 'axios';
 import Whisper from '../components/Whisper';
 
 export class home extends Component {
-    state= {
+    state = {
         whispers: null
     }
 
-    componentDidMount(){
-        axios.get('/whispers')
-            .then(res => {
-                this.setState({
-                    whispers: res.data
-                })
-            })
-            .catch(err => console.log(err));
-    }
+    // componentDidMount(){
+    //     axios.get('/whispers')
+    //         .then(res => {
+    //             this.setState({
+    //                 whispers: res.data
+    //             })
+    //         })
+    //         .catch(err => console.log(err));
+    // }
     render() {
         let recentWhsipersMarkup = this.state.whispers ? (
             this.state.whispers.map(whisper => <Whisper key="whisper.whisperId" whisper={whisper}/>)
