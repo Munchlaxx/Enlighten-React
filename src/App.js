@@ -28,6 +28,7 @@ if(token){
   const decodedToken = jwtDecode(token);
   if(decodedToken.exp * 1000 < Date.now()){
     window.location.href = '/login'
+    localStorage.clear();
     authenticated = false;
   } else {
     authenticated = true;
