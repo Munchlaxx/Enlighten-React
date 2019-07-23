@@ -4,14 +4,14 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import EditDetails from './EditDetails';
+import MyButton from "../util/MyButton";
 
 //MUI stuff
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import ToolTip from '@material-ui/core/Tooltip';
+
 
 //Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -23,6 +23,7 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 //Redux
 import { connect } from "react-redux";
 import { logoutUser, uploadImage} from '../redux/actions/userActions';
+
 
 const styles = theme => ({
   paper: {
@@ -112,11 +113,9 @@ class Profile extends Component {
                 hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <ToolTip title='Edit profile picture'>
-              <IconButton onClick={this.handleEditPicture} className="button">
-                <EditIcon color="primary" />
-              </IconButton>
-              </ToolTip>
+              <MyButton tip='Edit profile picture' onClick={this.handleEditPicture} btnClassName='button'>
+                <EditIcon color='primary'/>
+              </MyButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -150,11 +149,9 @@ class Profile extends Component {
               <CalendarToday color="primary" />
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <ToolTip title='Logout' placement="top">
-              <IconButton onClick={this.handleLogout}>
+            <MyButton tip='Logout' onClick={this.handleLogout}>
                 <KeyboardReturn color='primary'/>
-              </IconButton>
-            </ToolTip>
+              </MyButton>
             <EditDetails/>
           </div>
         </Paper>
