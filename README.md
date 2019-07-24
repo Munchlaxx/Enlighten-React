@@ -1,4 +1,4 @@
-# React-Web-Store
+# Enlighten-Social-App
 
 Enlighten is a full fledged social media app where users can make a profile, create and view posts(whispers), and comment on each others posts. 
 
