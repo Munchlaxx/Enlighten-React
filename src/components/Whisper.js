@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
+import DeleteWhisper from './DeleteWhisper';
 
 // Mui Stuff
 import Card from "@material-ui/core/Card";
@@ -23,7 +24,8 @@ import { likeWhisper, unlikeWhisper } from "../redux/actions/dataActions";
 const styles = {
   card: {
     display: "flex",
-    marginBottom: 20
+    marginBottom: 20,
+    position: 'relative',
   },
   image: {
     minWidth: 200
@@ -69,7 +71,7 @@ export class Whisper extends Component {
         likeCount,
         commentCount
       },
-      user: { authenticated }
+      user: { authenticated, credentials: { handle } }
     } = this.props;
     const likeButton = !authenticated ? (
       <MyButton tip="Like">
@@ -86,6 +88,9 @@ export class Whisper extends Component {
         <FavoriteBorder color="primary" />
       </MyButton>
     );
+    const deleteButton = authenticated && userHandle === handle ? (
+      <DeleteWhisper whisperId={whisperId}/>
+    ) : null  
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -102,6 +107,7 @@ export class Whisper extends Component {
           >
             {userHandle}
           </Typography>
+          {deleteButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>

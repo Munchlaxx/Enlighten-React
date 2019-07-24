@@ -1,4 +1,4 @@
-import {SET_WHISPERS, LOADING_DATA, LIKE_WHISPER, UNLIKE_WHISPER} from '../types';
+import {SET_WHISPERS, LOADING_DATA, LIKE_WHISPER, UNLIKE_WHISPER, DELETE_WHISPER} from '../types';
 import axios from 'axios';
 // Get all whispers
 export const getWhispers = () => dispatch => {
@@ -41,3 +41,11 @@ export const unlikeWhisper = (whisperId) => dispatch => {
       })
       .catch(err => console.log(err));
 } 
+
+export const deleteWhisper = (whisperId) => (dispatch) => {
+    axios.delete(`/whisper/${whisperId}`)
+        .then(() => {
+            dispatch({type: DELETE_WHISPER, payload: whisperId})
+        })
+        .catch(err => console.log(err));
+}

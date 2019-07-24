@@ -2,7 +2,8 @@ import {
   SET_WHISPERS,
   LIKE_WHISPER,
   UNLIKE_WHISPER,
-  LOADING_DATA
+  LOADING_DATA,
+  DELETE_WHISPER
 } from "../types";
 
 const initialState = {
@@ -33,6 +34,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
       };
+
+      case DELETE_WHISPER:
+        index = state.whispers.findIndex(whisper => whisper.whisperId === action.payload);
+        state.whispers.splice(index, 1);
+        return{
+          ...state
+        }
     
       default:
           return state;

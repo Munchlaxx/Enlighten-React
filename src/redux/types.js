@@ -13,3 +13,4 @@ export const SET_WHISPERS = 'SET_WHISPERS';
 export const SET_WHISPER = 'SET_WHISPER';
 export const LIKE_WHISPER = 'LIKE_WHISPER';
 export const UNLIKE_WHISPER = 'UNLIKE_WHISPER';
+export const DELETE_WHISPER = 'DELETE_WHISPER';
