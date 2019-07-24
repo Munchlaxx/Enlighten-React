@@ -37,29 +37,25 @@ const styles = {
 };
 
 // Added comments
-export class Whisper extends Component {
-    likedWhisper = () => {
-        if (
-          this.props.user.likes &&
-          this.props.user.likes.find(
-            (like) => like.whisperId === this.props.whisper.whisperId
-          )
-        )
-          return true;
-        else return false;
-      };
-
+class Whisper extends Component {
+  likedWhisper = () => {
+    if (
+      this.props.user.likes &&
+      this.props.user.likes.find(
+        (like) => like.whisperId === this.props.whisper.whisperId
+      )
+    )
+      return true;
+    else return false;
+  };
   likeWhisper = () => {
     this.props.likeWhisper(this.props.whisper.whisperId);
   };
-
   unlikeWhisper = () => {
-    this.props.unlikeWhisper(this.props.whisper.whisperId);
+    this.props.unlikeWhisper(this.props.whisper.screamId);
   };
-
   render() {
     dayjs.extend(relativeTime);
-
     const {
       classes,
       whisper: {
@@ -71,7 +67,10 @@ export class Whisper extends Component {
         likeCount,
         commentCount
       },
-      user: { authenticated, credentials: { handle } }
+      user: {
+        authenticated,
+        credentials: { handle }
+      }
     } = this.props;
     const likeButton = !authenticated ? (
       <MyButton tip="Like">
@@ -88,14 +87,15 @@ export class Whisper extends Component {
         <FavoriteBorder color="primary" />
       </MyButton>
     );
-    const deleteButton = authenticated && userHandle === handle ? (
-      <DeleteWhisper whisperId={whisperId}/>
-    ) : null  
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeleteWhisper whisperId={whisperId} />
+      ) : null;
     return (
       <Card className={classes.card}>
         <CardMedia
           image={userImage}
-          title={"Profile Image"}
+          title="Profile image"
           className={classes.image}
         />
         <CardContent className={classes.content}>
@@ -113,7 +113,7 @@ export class Whisper extends Component {
           </Typography>
           <Typography variant="body1">{body}</Typography>
           {likeButton}
-          <span>{likeCount} likes</span>
+          <span>{likeCount} Likes</span>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
           </MyButton>
@@ -132,7 +132,7 @@ Whisper.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user
 });
 

@@ -35,10 +35,10 @@ export default function(state = initialState, action) {
         ...state
       };
       case DELETE_WHISPER:
-        index = state.whispers.findIndex(
+        let newIndex = state.whispers.findIndex(
           (whisper) => whisper.whisperId === action.payload
         );
-        state.whispers.splice(index, 1);
+        state.whispers.splice(newIndex, 1);
         return {
           ...state
         };
