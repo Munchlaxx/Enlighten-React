@@ -20,66 +20,63 @@ const styles = {
       top: '10%'
     }
   };
-
-class DeleteWhisper extends Component {
-
-    state={
-        open: false
+  
+  class DeleteWhisper extends Component {
+    state = {
+      open: false
     };
-
     handleOpen = () => {
-        this.setState({open: true});
-    }
-
+      this.setState({ open: true });
+    };
     handleClose = () => {
-        this.setState({open: false});
-    }
-
+      this.setState({ open: false });
+    };
     deleteWhisper = () => {
-        this.props.deleteWhisper(this.props.whisperId)
-        this.setState({open: false});
-    }
-
+      this.props.deleteWhisper(this.props.whisperId);
+      this.setState({ open: false });
+    };
     render() {
-
-        const { classes } = this.props
-
-        return (
-            <Fragment>
-                <MyButton tip='Delete Whisper'
-                onClick={this.handleOpen}
-                btnClassName={classes.deleteButton}
-                >
-                    <DeleteOutline color='secondary'/>
-                </MyButton>
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    fullWidth
-                    maxWidth='sm'
-                >
-                    <DialogTitle>
-                        Are you sure you want to delete this whisper?
-                    </DialogTitle>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} color='primary'>
-                            Cancel
-                        </Button>
-                        <Button onClick={this.deleteWhisper} color='secondary'>
-                            Delete
-                        </Button>
-                    </DialogActions>
-
-                </Dialog>
-            </Fragment>
-        )
+      const { classes } = this.props;
+  
+      return (
+        <Fragment>
+          <MyButton
+            tip="Delete Whisper"
+            onClick={this.handleOpen}
+            btnClassName={classes.deleteButton}
+          >
+            <DeleteOutline color="secondary" />
+          </MyButton>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            fullWidth
+            maxWidth="sm"
+          >
+            <DialogTitle>
+              Are you sure you want to delete this whisper?
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.deleteWhisper} color="secondary">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Fragment>
+      );
     }
-}
-
-DeleteWhisper.propTypes = {
+  }
+  
+  DeleteWhisper.propTypes = {
     deleteWhisper: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     whisperId: PropTypes.string.isRequired
-}
-
-export default connect(null, { deleteWhisper })(withStyles(styles)(DeleteWhisper))
+  };
+  
+  export default connect(
+    null,
+    { deleteWhisper }
+  )(withStyles(styles)(DeleteWhisper));

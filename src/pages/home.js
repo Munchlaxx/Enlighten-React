@@ -1,31 +1,29 @@
-import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import axios from "axios";
-import Whisper from "../components/Whisper";
-import Profile from "../components/Profile";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
-import { connect } from "react-redux";
-import { getWhispers } from "../redux/actions/dataActions";
+import Whisper from '../components/Whisper';
+import Profile from '../components/Profile';
 
-export class home extends Component {
+import { connect } from 'react-redux';
+import { getWhispers } from '../redux/actions/dataActions';
+
+class home extends Component {
   componentDidMount() {
     this.props.getWhispers();
   }
   render() {
     const { whispers, loading } = this.props.data;
-    let recentWhsipersMarkup = !loading ? (
-      whispers.map(whisper => (
-        <Whisper key="whisper.whisperId" whisper={whisper} />
-      ))
+    let recentWhispersMarkup = !loading ? (
+      whispers.map((whisper) => <Whisper key={whisper.whisperId} whisper={whisper} />)
     ) : (
       <p>Loading...</p>
     );
-
     return (
-      <Grid container spacing={10}>
+      <Grid container spacing={16}>
         <Grid item sm={8} xs={12}>
-          {recentWhsipersMarkup}
+          {recentWhispersMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
           <Profile />
@@ -34,12 +32,13 @@ export class home extends Component {
     );
   }
 }
+
 home.propTypes = {
   getWhispers: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.data
 });
 
