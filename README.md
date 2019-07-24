@@ -9,7 +9,7 @@ Enlighten is a full fledged social media app where users can make a profile, cre
 * Firebase/Firestore
 * Material-UI
 
-# What I Learned
+# What We've Learned
 
 * Advanced Redux patterns (Selectors, State Normalisation)
 * User Authentication and Databases
