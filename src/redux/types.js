@@ -7,4 +7,9 @@ export const LOADING_USER = 'LOADING_USER';
 export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const LOADING_DATA = 'LOADING_DATA';
 // Data reducer types
+export const SET_WHISPERS = 'SET_WHISPERS';
+export const SET_WHISPER = 'SET_WHISPER';
+export const LIKE_WHISPER = 'LIKE_WHISPER';
+export const UNLIKE_WHISPER = 'UNLIKE_WHISPER';
