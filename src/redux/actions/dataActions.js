@@ -7,7 +7,9 @@ import {
   LOADING_UI,
   SET_ERRORS,
   CLEAR_ERRORS,
-  POST_WHISPER
+  POST_WHISPER,
+  STOP_LOADING_UI,
+  SET_WHISPER
 } from "../types";
 import axios from "axios";
 // Get all whispers
@@ -28,6 +30,19 @@ export const getWhispers = () => dispatch => {
       });
     });
 };
+
+export const getWhisper = whisperId => dispatch => {
+  dispatch({type: LOADING_UI});
+  axios.get(`/whisper/${whisperId}`)
+    .then(res => {
+      dispatch({
+        type: SET_WHISPER,
+        payload: res.data
+      })
+      dispatch({type: STOP_LOADING_UI})
+    })
+    .catch(err => console.log(err));
+}
 // Post a whisper
 export const postWhisper = newWhisper => dispatch => {
   dispatch({ type: LOADING_UI });
@@ -59,7 +74,7 @@ export const likeWhisper = whisperId => dispatch => {
     })
     .catch(err => console.log(err));
 };
-// Unlike a whisepr
+// Unlike a whisper
 export const unlikeWhisper = whisperId => dispatch => {
   axios
     .get(`/whisper/${whisperId}/unlike`)
@@ -80,3 +95,8 @@ export const deleteWhisper = (whisperId) => (dispatch) => {
       })
       .catch((err) => console.log(err));
   };
+
+
+  export const clearErrors = () => dispatch => {
+    dispatch({ type: CLEAR_ERRORS});
+  }

@@ -6,6 +6,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
 import DeleteWhisper from './DeleteWhisper';
+import WhisperDialog from './WhisperDialog';
 
 // Mui Stuff
 import Card from "@material-ui/core/Card";
@@ -118,6 +119,7 @@ class Whisper extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
+          <WhisperDialog whisperId={whisperId} userHandle={userHandle}/>
         </CardContent>
       </Card>
     );
