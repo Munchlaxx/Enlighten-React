@@ -9,7 +9,8 @@ import {
   CLEAR_ERRORS,
   POST_WHISPER,
   STOP_LOADING_UI,
-  SET_WHISPER
+  SET_WHISPER,
+  SUBMIT_COMMENT
 } from "../types";
 import axios from "axios";
 // Get all whispers
@@ -32,17 +33,18 @@ export const getWhispers = () => dispatch => {
 };
 
 export const getWhisper = whisperId => dispatch => {
-  dispatch({type: LOADING_UI});
-  axios.get(`/whisper/${whisperId}`)
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/whisper/${whisperId}`)
     .then(res => {
       dispatch({
         type: SET_WHISPER,
         payload: res.data
-      })
-      dispatch({type: STOP_LOADING_UI})
+      });
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch(err => console.log(err));
-}
+};
 // Post a whisper
 export const postWhisper = newWhisper => dispatch => {
   dispatch({ type: LOADING_UI });
@@ -53,7 +55,7 @@ export const postWhisper = newWhisper => dispatch => {
         type: POST_WHISPER,
         payload: res.data
       });
-      dispatch({ type: CLEAR_ERRORS });
+      dispatch(clearErrors());
     })
     .catch(err => {
       dispatch({
@@ -87,16 +89,33 @@ export const unlikeWhisper = whisperId => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const deleteWhisper = (whisperId) => (dispatch) => {
-    axios
-      .delete(`/whisper/${whisperId}`)
-      .then(() => {
-        dispatch({ type: DELETE_WHISPER, payload: whisperId });
-      })
-      .catch((err) => console.log(err));
-  };
+export const submitComment = (whisperId, commentData) => dispatch => {
+  axios
+    .post(`/whisper/${whisperId}/comment`, commentData)
+    .then(res => {
+      dispatch({
+        type: SUBMIT_COMMENT,
+        payload: res.data
+      });
+      dispatch(clearErrors());
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
 
+export const deleteWhisper = whisperId => dispatch => {
+  axios
+    .delete(`/whisper/${whisperId}`)
+    .then(() => {
+      dispatch({ type: DELETE_WHISPER, payload: whisperId });
+    })
+    .catch(err => console.log(err));
+};
 
-  export const clearErrors = () => dispatch => {
-    dispatch({ type: CLEAR_ERRORS});
-  }
+export const clearErrors = () => dispatch => {
+  dispatch({ type: CLEAR_ERRORS });
+};

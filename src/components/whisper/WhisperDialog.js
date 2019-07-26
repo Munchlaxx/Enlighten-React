@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
+import CommentForm from "./CommentForm";
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -18,7 +19,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 // Redux stuff
 import { connect } from "react-redux";
-import { getWhisper } from "../../redux/actions/dataActions";
+import { getWhisper, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = theme => ({
   profileImage: {
@@ -64,6 +65,7 @@ class WhisperDialog extends Component {
   };
   handleClose = () => {
     this.setState({ open: false });
+    this.props.clearErrors();
   };
 
   render() {
@@ -114,6 +116,7 @@ class WhisperDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
+        <CommentForm whisperId={whisperId} />
         <Comments comments={comments} />
       </Grid>
     );
@@ -149,6 +152,7 @@ class WhisperDialog extends Component {
 }
 
 WhisperDialog.propTypes = {
+  clearErrors: PropTypes.func.isRequired,
   getWhisper: PropTypes.func.isRequired,
   whisperId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
@@ -162,7 +166,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  getWhisper
+  getWhisper,
+  clearErrors
 };
 
 export default connect(
