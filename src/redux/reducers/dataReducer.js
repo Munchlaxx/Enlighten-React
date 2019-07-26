@@ -37,6 +37,9 @@ export default function(state = initialState, action) {
         (whisper) => whisper.whisperId === action.payload.whisperId
       );
       state.whispers[index] = action.payload;
+      if (state.whisper.whisperId === action.payload.whisperId) {
+        state.whisper = action.payload;
+      }
       return {
         ...state
       };
