@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 
-import Whisper from '../components/Whisper';
-import Profile from '../components/Profile';
+import Whisper from "../components/whisper/Whisper";
+import Profile from "../components/profile/Profile";
 
-import { connect } from 'react-redux';
-import { getWhispers } from '../redux/actions/dataActions';
+import { connect } from "react-redux";
+import { getWhispers } from "../redux/actions/dataActions";
 
 class home extends Component {
   componentDidMount() {
@@ -16,7 +15,9 @@ class home extends Component {
   render() {
     const { whispers, loading } = this.props.data;
     let recentWhispersMarkup = !loading ? (
-      whispers.map((whisper) => <Whisper key={whisper.whisperId} whisper={whisper} />)
+      whispers.map(whisper => (
+        <Whisper key={whisper.whisperId} whisper={whisper} />
+      ))
     ) : (
       <p>Loading...</p>
     );
@@ -38,7 +39,7 @@ home.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.data
 });
 

@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
-import DeleteWhisper from './DeleteWhisper';
-import WhisperDialog from './WhisperDialog';
-import LikeButton from './LikeButton';
+import MyButton from "../../util/MyButton";
+import DeleteWhisper from "./DeleteWhisper";
+import WhisperDialog from "./WhisperDialog";
+import LikeButton from "./LikeButton";
 
 // Mui Stuff
 import Card from "@material-ui/core/Card";
@@ -24,7 +24,7 @@ const styles = {
   card: {
     display: "flex",
     marginBottom: 20,
-    position: 'relative',
+    position: "relative"
   },
   image: {
     minWidth: 200
@@ -55,7 +55,7 @@ class Whisper extends Component {
         credentials: { handle }
       }
     } = this.props;
-    
+
     const deleteButton =
       authenticated && userHandle === handle ? (
         <DeleteWhisper whisperId={whisperId} />
@@ -87,7 +87,7 @@ class Whisper extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
-          <WhisperDialog whisperId={whisperId} userHandle={userHandle}/>
+          <WhisperDialog whisperId={whisperId} userHandle={userHandle} />
         </CardContent>
       </Card>
     );
@@ -100,7 +100,7 @@ Whisper.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.user
 });
 
