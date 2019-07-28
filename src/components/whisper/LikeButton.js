@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import MyButton from "../../util/MyButton";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import MyButton from '../../util/MyButton';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // Icons
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 // REdux
-import { connect } from "react-redux";
-import { likeWhisper, unlikeWhisper } from "../../redux/actions/dataActions";
+import { connect } from 'react-redux';
+import { likeWhisper, unlikeWhisper } from '../../redux/actions/dataActions';
 
 export class LikeButton extends Component {
   likedWhisper = () => {
     if (
       this.props.user.likes &&
       this.props.user.likes.find(
-        like => like.whisperId === this.props.whisperId
+        (like) => like.whisperId === this.props.whisperId
       )
     )
       return true;
@@ -54,7 +54,7 @@ LikeButton.propTypes = {
   unlikeWhisper: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user
 });
 

@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class CommentForm extends Component {
   state = {
-    body: "",
+    body: '',
     errors: {}
   };
 
@@ -39,14 +39,14 @@ class CommentForm extends Component {
       this.setState({ errors: nextProps.UI.errors });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: "" });
+      this.setState({ body: '' });
     }
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.submitComment(this.props.whisperId, { body: this.state.body });
   };
@@ -56,7 +56,7 @@ class CommentForm extends Component {
     const errors = this.state.errors;
 
     const commentFormMarkup = authenticated ? (
-      <Grid item sm={12} style={{ textAlign: "center" }}>
+      <Grid item sm={12} style={{ textAlign: 'center' }}>
         <form onSubmit={this.handleSubmit}>
           <TextField
             name="body"
@@ -93,7 +93,7 @@ CommentForm.propTypes = {
   authenticated: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   UI: state.UI,
   authenticated: state.user.authenticated
 });

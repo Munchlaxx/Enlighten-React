@@ -7,13 +7,14 @@ import {
   POST_WHISPER,
   SET_WHISPER,
   SUBMIT_COMMENT
-} from "../types";
+} from '../types';
 
 const initialState = {
   whispers: [],
   whisper: {},
   loading: false
 };
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case LOADING_DATA:
@@ -35,20 +36,22 @@ export default function(state = initialState, action) {
     case LIKE_WHISPER:
     case UNLIKE_WHISPER:
       let index = state.whispers.findIndex(
-        whisper => whisper.whisperId === action.payload.whisperId
+        (whisper) => whisper.whisperId === action.payload.whisperId
       );
       state.whispers[index] = action.payload;
       if (state.whisper.whisperId === action.payload.whisperId) {
+        let temp = state.whisper.comments;
         state.whisper = action.payload;
+        state.whisper.comments = temp;
       }
       return {
         ...state
       };
     case DELETE_WHISPER:
-      let newIndex = state.whispers.findIndex(
-        whisper => whisper.whisperId === action.payload
+      index = state.whispers.findIndex(
+        (whisper) => whisper.whisperId === action.payload
       );
-      state.whispers.splice(newIndex, 1);
+      state.whispers.splice(index, 1);
       return {
         ...state
       };
@@ -69,3 +72,4 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+

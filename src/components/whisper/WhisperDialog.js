@@ -1,57 +1,48 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../../util/MyButton";
-import dayjs from "dayjs";
-import Comments from "./Comments";
-import { Link } from "react-router-dom";
-import LikeButton from "./LikeButton";
-import CommentForm from "./CommentForm";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
+import MyButton from '../../util/MyButton';
+import LikeButton from './LikeButton';
+import Comments from './Comments';
+import CommentForm from './CommentForm';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 // MUI Stuff
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import ChatIcon from "@material-ui/icons/Chat";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 // Icons
-import CloseIcon from "@material-ui/icons/Close";
-import UnfoldMore from "@material-ui/icons/UnfoldMore";
+import CloseIcon from '@material-ui/icons/Close';
+import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat';
 // Redux stuff
-import { connect } from "react-redux";
-import { getWhisper, clearErrors } from "../../redux/actions/dataActions";
+import { connect } from 'react-redux';
+import { getWhisper, clearErrors } from '../../redux/actions/dataActions';
 
-const styles = theme => ({
+const styles = (theme) => ({
   profileImage: {
     maxWidth: 200,
     height: 200,
-    borderRadius: "50%",
-    objectFit: "cover"
+    borderRadius: '50%',
+    objectFit: 'cover'
   },
   dialogContent: {
     padding: 20
   },
   closeButton: {
-    position: "absolute",
-    left: "90%"
+    position: 'absolute',
+    left: '90%'
   },
   expandButton: {
-    position: "absolute",
-    left: "90%"
+    position: 'absolute',
+    left: '90%'
   },
   spinnerDiv: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 50,
     marginBottom: 50
-  },
-  invisibleSeparator: {
-    border: "none",
-    margin: 4
-  },
-  visibleSeparator: {
-    width: "100%",
-    borderBottom: "1px solid rgba(0,0,0,0.1)",
-    marginBottom: 20
   }
 });
 
@@ -89,7 +80,7 @@ class WhisperDialog extends Component {
         <CircularProgress size={200} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={16}>
+      <Grid container spacing={10}>
         <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
@@ -104,7 +95,7 @@ class WhisperDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body2" color="textSecondary">
-            {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
+            {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
@@ -124,7 +115,7 @@ class WhisperDialog extends Component {
       <Fragment>
         <MyButton
           onClick={this.handleOpen}
-          tip="Expand whisper"
+          tip="Expand Whisper"
           tipClassName={classes.expandButton}
         >
           <UnfoldMore color="primary" />
@@ -160,7 +151,7 @@ WhisperDialog.propTypes = {
   UI: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   whisper: state.data.whisper,
   UI: state.UI
 });
