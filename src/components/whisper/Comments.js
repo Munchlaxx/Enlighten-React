@@ -1,21 +1,30 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 // MUI
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-const styles = (theme) => ({
+const styles = theme => ({
   commentImage: {
-    maxWidth: '100%',
+    maxWidth: "100%",
     height: 100,
-    objectFit: 'cover',
-    borderRadius: '50%'
+    objectFit: "cover",
+    borderRadius: "50%"
   },
   commentData: {
     marginLeft: 20
+  },
+  invisibleSeparator: {
+    border: "none",
+    margin: 4
+  },
+  visibleSeparator: {
+    width: "100%",
+    borderBottom: "1px solid rgba(0,0,0,0.1)",
+    marginBottom: 20
   }
 });
 
@@ -49,7 +58,7 @@ class Comments extends Component {
                         {userHandle}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
-                        {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                        {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
                       </Typography>
                       <hr className={classes.invisibleSeparator} />
                       <Typography variant="body1">{body}</Typography>
