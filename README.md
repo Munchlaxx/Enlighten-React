@@ -2,6 +2,11 @@
 
 Enlighten is a full fledged social media app where users can make a profile, create and view posts(whispers), and comment on each others posts.
 
+# Developed By
+
+- Cliff Mirschel (BlueBoi904)
+- John Mirschel (Munchlaxx)
+
 # Technologies Used
 
 - ReactJS
