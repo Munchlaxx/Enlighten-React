@@ -72,7 +72,7 @@ class PostWhisper extends Component {
     } = this.props;
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip="Post a Scream!">
+        <MyButton onClick={this.handleOpen} tip="Post a Whisper!">
           <AddIcon />
         </MyButton>
         <Dialog
@@ -88,7 +88,7 @@ class PostWhisper extends Component {
           >
             <CloseIcon />
           </MyButton>
-          <DialogTitle>Post a new scream</DialogTitle>
+          <DialogTitle>Post a new whisper</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit}>
               <TextField
