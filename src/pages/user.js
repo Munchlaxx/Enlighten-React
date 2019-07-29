@@ -4,6 +4,8 @@ import axios from "axios";
 import Whisper from "../components/whisper/Whisper";
 import StaticProfile from "../components/profile/StaticProfile";
 import Grid from "@material-ui/core/Grid";
+import WhisperSkeleton from '../util/WhisperSkeleton';
+import ProfileSkeleton from '../util/ProfileSkeleton';
 
 import { connect } from "react-redux";
 import { getUserData } from "../redux/actions/dataActions";
@@ -11,7 +13,7 @@ import { getUserData } from "../redux/actions/dataActions";
 class user extends Component {
   state = {
     profile: null,
-    screamIdParam: null
+    whisperIdParam: null
   };
   componentDidMount() {
     const handle = this.props.match.params.handle;
@@ -34,7 +36,7 @@ class user extends Component {
     const { whisperIdParam } = this.state;
 
     const whispersMarkup = loading ? (
-      <p>Loading data...</p>
+      <WhisperSkeleton />
     ) : whispers === null ? (
       <p>No whispers from this user</p>
     ) : !whisperIdParam ? (
@@ -56,7 +58,7 @@ class user extends Component {
         </Grid>
         <Grid item sm={4} xs={12}>
           {this.state.profile === null ? (
-            <p>Loading profile...</p>
+            <ProfileSkeleton />
           ) : (
             <StaticProfile profile={this.state.profile} />
           )}

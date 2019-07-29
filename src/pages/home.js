@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
+import WhisperSkeleton from '../util/WhisperSkeleton';
 
 import Whisper from "../components/whisper/Whisper";
 import Profile from "../components/profile/Profile";
@@ -19,7 +20,7 @@ class home extends Component {
         <Whisper key={whisper.whisperId} whisper={whisper} />
       ))
     ) : (
-      <p>Loading...</p>
+      <WhisperSkeleton />
     );
     return (
       <Grid container spacing={10}>
