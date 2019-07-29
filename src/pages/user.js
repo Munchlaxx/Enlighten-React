@@ -10,10 +10,15 @@ import { getUserData } from "../redux/actions/dataActions";
 
 class user extends Component {
   state = {
-    profile: null
+    profile: null,
+    screamIdParam: null
   };
   componentDidMount() {
     const handle = this.props.match.params.handle;
+    const whisperId = this.props.match.params.whisperId;
+
+    if (whisperId) this.setState({ whisperIdParam: whisperId });
+
     this.props.getUserData(handle);
     axios
       .get(`/user/${handle}`)
@@ -26,19 +31,26 @@ class user extends Component {
   }
   render() {
     const { whispers, loading } = this.props.data;
+    const { whisperIdParam } = this.state;
 
     const whispersMarkup = loading ? (
       <p>Loading data...</p>
     ) : whispers === null ? (
       <p>No whispers from this user</p>
-    ) : (
+    ) : !whisperIdParam ? (
       whispers.map(whisper => (
         <Whisper key={whisper.whisperId} whisper={whisper} />
       ))
+    ) : (
+      whispers.map((whisper) => {
+        if (whisper.whisperId !== whisperIdParam)
+          return <Whisper key={whisper.whisperId} whisper={whisper} />;
+        else return <Whisper key={whisper.whisperId} whisper={whisper} openDialog />;
+      })
     );
 
     return (
-      <Grid container spacing={16}>
+      <Grid container spacing={4}>
         <Grid item sm={8} xs={12}>
           {whispersMarkup}
         </Grid>

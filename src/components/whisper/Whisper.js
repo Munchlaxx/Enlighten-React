@@ -87,7 +87,11 @@ class Whisper extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
-          <WhisperDialog whisperId={whisperId} userHandle={userHandle} />
+          <WhisperDialog
+            whisperId={whisperId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </CardContent>
       </Card>
     );
@@ -97,7 +101,8 @@ class Whisper extends Component {
 Whisper.propTypes = {
   user: PropTypes.object.isRequired,
   whisper: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
