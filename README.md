@@ -27,7 +27,3 @@ Enlighten is a full fledged social media app where users can make a profile, cre
 <img src='Images/main_view.png' heigth='500'>
 <img src='Images/comment.png' heigth='500'>
 <img src='Images/signup.png' heigth='500'>
-
-# Test App Live
-
-Link to test the app live: https://enlightened-d7a2f.firebaseapp.com/
