@@ -20,7 +20,7 @@ Enlighten is a full fledged social media app where users can make a profile, cre
 - Developed RESTful API in NodeJS
 - Managed and stored data using a NoSQL Database.
 - Improved User Validation and Security by developing our own middleware and password encryption.
-- Increased backend functionality implementing database triggers.
+- Improved backend functionality implementing database triggers.
 
 # Images
 
